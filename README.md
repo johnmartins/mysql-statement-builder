@@ -1,6 +1,9 @@
 # MySQL-statement-builder (mysqlsb)
 ...
 
+## Installation
+```pip install mysql-statement-builder```
+
 ## Usage
 ```
 import mysql.connector

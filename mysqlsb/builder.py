@@ -6,7 +6,6 @@ from mysqlsb.configuration import Configuration as Cnf
 import mysqlsb.statements as stmnt
 
 
-
 class FetchType(Enum):
     """
     Used to determine how many rows should be fetched by a MySQL statement/query

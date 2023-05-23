@@ -11,10 +11,12 @@ def create_insert_statement(table: str, columns: List[str], backticks=True):
 
     if backticks:
         insert_cols_str = ', '.join(wrap_in_backticks(columns))                 # `col1`, `col2`, `col3`, ..
+        table_str = f'`{table}`'
     else:
         insert_cols_str = ', '.join(columns)                                    # col1, col2, col3, ..
+        table_str = table
 
-    query = f"INSERT INTO {table} ({insert_cols_str}) "
+    query = f"INSERT INTO {table_str} ({insert_cols_str}) "
     return query
 
 

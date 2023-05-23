@@ -7,7 +7,7 @@ import mysql.connector
 from mysql.connector import pooling
 from contextlib import contextmanager
 
-from sedbackend.libs.mysqlutils import MySQLStatementBuilder, FetchType
+from mysqlsb import MySQLStatementBuilder, FetchType
 
 # Setup a connection pool using the MySQL python connector
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(

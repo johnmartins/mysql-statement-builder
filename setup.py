@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='mysql-statement-builder',
-    version='0.2.0',
+    version='0.2.1',
     description='Simplifies writing MySQL statements in non-ORM environments.',
     py_modules=["mysqlsb"],
     package_dir={'': 'mysqlsb'},
@@ -16,5 +16,11 @@ setup(
         "License :: OSI Approved :: MIT License"
     ],
     long_description=long_description,
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
+    extras_require={
+        "dev": [
+            "pytest>=7.3",
+            "twine>=4.0"
+        ]
+    }
 )

@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 from enum import Enum
 
 from mysqlsb.exceptions import InvalidStatementConfiguration
@@ -40,9 +40,20 @@ class MySQLStatementBuilder:
         self.query += stmnt.create_insert_statement(table, columns)
         return self
 
-    def set_values(self, values: List[str]):
-        self.query += stmnt.create_prepared_values_statement(len(values))
-        self.values.extend(values)
+    def set_values(self, values: List):
+        """
+        :param values: A list of values of type str, bool, int or float.
+        For multiple insertions, nest lists inside the list. E.g., List[List[int]].
+        :return: SQL VALUES statement string, example: "VALUES (1,2,3), ('a','b', 'c') "
+        """
+        if isinstance(values[0], list):
+            self.query += stmnt.create_prepared_values_statement(len(values[0]), times=len(values))
+            for val_array in values:
+                self.values.extend(val_array)
+        else:
+            self.query += stmnt.create_prepared_values_statement(len(values))
+            self.values.extend(values)
+
         return self
 
     def select(self, table: str, columns: List[str]):

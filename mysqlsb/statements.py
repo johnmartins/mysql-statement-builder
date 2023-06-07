@@ -36,10 +36,11 @@ def create_update_statement(table: str, set_statement: str):
     return f"UPDATE {table} SET {set_statement} "
 
 
-def create_prepared_values_statement(count: int):
+def create_prepared_values_statement(count: int, times=1):
     placeholder_array = ['%s'] * count
     placeholder_str = ', '.join(placeholder_array)
-    return f"VALUES ({placeholder_str}) "
+    placeholders = [f'({placeholder_str})'] * times
+    return f"VALUES {', '.join(placeholders)} "
 
 
 def create_prepared_where_statement(condition):
